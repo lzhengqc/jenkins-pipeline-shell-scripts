@@ -19,16 +19,16 @@ node {
    stage('Test'){
         parallel 'functional': {
           sh './myTest.sh' 
-          sleep 30
+          sleep 60
         }, 'performance': {
            sh './myTest.sh'  // Test can seperated to different tests  ex: Integration and Qualit , Functional , Load and security
-           sleep 20
+           sleep 30
         } 
      }
 
 
    stage('Aproval'){
-      timeout(time:20, unit:'SECONDS') {  // DAYS , MINUTES
+      timeout(time:300, unit:'SECONDS') {  // DAYS , MINUTES
            input 'Do you approve deployment?'
       }
    }
